@@ -4,11 +4,10 @@ import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
 const PlayerInfoScreen = ({ navigation }) => {
   const [name, setName] = useState('');
-  const [age, setAge] = useState('');
 
   const handlePress = () => {
     // Aqui você pode adicionar a lógica para salvar os dados ou navegar para outra tela
-    navigation.navigate('Inicio', { playerName: name, playerAge: age });
+    navigation.navigate('Inicio', { playerName: name});
   };
 
   return (
