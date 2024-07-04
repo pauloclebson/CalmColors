@@ -7,8 +7,8 @@ export default function HomeScreen({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.title}>Calm Colors</Text>
       <Button
-        title="Start Activity"
-        onPress={() => navigation.navigate('Activity')}
+        title="Jogar"
+        onPress={() => navigation.navigate('Atividade')}
       />
     </View>
   );
