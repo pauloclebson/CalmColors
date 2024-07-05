@@ -72,7 +72,9 @@ export default function ActivityScreen() {
       <View style={styles.container}>
         <Text style={styles.title}>Qual é a figura correta?</Text>
         <GeometryImage color={currentColor} />
-        <OptionsList options={geometries} onSelect={handleSelectGeometry} />
+        <OptionsList
+
+        options={geometries} onSelect={handleSelectGeometry} />
         <View style={styles.resultsContainer}>
           <Text style={styles.resultText}>Acertos: {correctAnswers}</Text>
           <Text style={styles.resultText}>Erros: {wrongAnswers}</Text>
@@ -107,6 +109,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+    color: 'white',
   },
   resultsContainer: {
     marginVertical: 20,
@@ -114,6 +117,7 @@ const styles = StyleSheet.create({
   resultText: {
     fontSize: 18,
     marginBottom: 10,
+    color: 'white',
   },
   button: {
     backgroundColor: 'blue',
@@ -133,5 +137,5 @@ const styles = StyleSheet.create({
     width: 150, // Ajuste o tamanho da imagem conforme necessário
     height: 150, // Ajuste o tamanho da imagem conforme necessário
     margin: 50,
-  }
+  },
 });

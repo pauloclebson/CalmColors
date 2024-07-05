@@ -32,12 +32,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#87CEFA',
   },
   title: {
+    color: 'white',
     fontSize: 24,
     fontWeight: 'bold',
-  },
-  subtitle: {
-    fontSize: 18,
-    marginTop: 8,
   },
   container_img:{
     justifyContent: 'center',

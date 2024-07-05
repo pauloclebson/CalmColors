@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
     padding: 16,
     backgroundColor: '#87CEFA',
   },
@@ -44,11 +45,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   label: {
+    color: 'white',
     fontSize: 18,
-
+    fontWeight: 'bold',
     marginBottom: 8,
   },
   input: {
+    width: '70%',
     borderRadius: 10,
     height: 40,
     borderColor: 'gray',
@@ -66,7 +69,6 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: 'center',
-    width: '50%',
     backgroundColor: 'blue',
     padding: 15,
     borderRadius: 10,
