@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Alert, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Alert, TouchableOpacity, Image } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import GeometryImage from '../components/GeometryImage';
 import OptionsList from '../components/OptionsList';
@@ -62,36 +62,46 @@ export default function ActivityScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Qual é a figura correta?</Text>
-      <GeometryImage color={currentColor} />
-      <OptionsList options={geometries} onSelect={handleSelectGeometry} />
-      <View style={styles.resultsContainer}>
-        <Text style={styles.resultText}>Acertos: {correctAnswers}</Text>
-        <Text style={styles.resultText}>Erros: {wrongAnswers}</Text>
+    <View style={styles.container2}>
+      <View style={styles.container_img}>
+        <Image
+          source={require('../assets/calm.png')} // Ajuste o caminho da imagem conforme necessário
+          style={styles.image}
+        />
       </View>
-      {!finished && (
-        <TouchableOpacity style={styles.button} onPress={handleFinishActivity}>
-          <Text style={styles.buttonText}>Finalizar Atividade</Text>
-        </TouchableOpacity>
-      )}
-      <ResultModal
-        visible={modalVisible}
-        correctAnswers={correctAnswers}
-        wrongAnswers={wrongAnswers}
-        onClose={handleCloseModal}
-        playerName={playerName}
-      />
+      <View style={styles.container}>
+        <Text style={styles.title}>Qual é a figura correta?</Text>
+        <GeometryImage color={currentColor} />
+        <OptionsList options={geometries} onSelect={handleSelectGeometry} />
+        <View style={styles.resultsContainer}>
+          <Text style={styles.resultText}>Acertos: {correctAnswers}</Text>
+          <Text style={styles.resultText}>Erros: {wrongAnswers}</Text>
+        </View>
+        {!finished && (
+          <TouchableOpacity style={styles.button} onPress={handleFinishActivity}>
+            <Text style={styles.buttonText}>Finalizar Atividade</Text>
+          </TouchableOpacity>
+        )}
+        <ResultModal
+          visible={modalVisible}
+          correctAnswers={correctAnswers}
+          wrongAnswers={wrongAnswers}
+          onClose={handleCloseModal}
+          playerName={playerName}
+        />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  container2:{
     flex: 1,
+    backgroundColor: '#87CEFA',
+  },
+  container: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#87CEFA',
   },
   title: {
     fontSize: 24,
@@ -116,4 +126,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
+  container_img:{
+    alignItems: 'center',
+  },
+  image: {
+    width: 150, // Ajuste o tamanho da imagem conforme necessário
+    height: 150, // Ajuste o tamanho da imagem conforme necessário
+    margin: 50,
+  }
 });

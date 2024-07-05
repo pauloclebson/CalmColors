@@ -1,6 +1,6 @@
 // screens/PlayerInfoScreen.js
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
 
 const PlayerInfoScreen = ({ navigation }) => {
   const [name, setName] = useState('');
@@ -25,7 +25,9 @@ const PlayerInfoScreen = ({ navigation }) => {
         value={name}
         onChangeText={setName}
       />
-      <Button title="Avançar" onPress={handlePress} />
+      <TouchableOpacity style={styles.button} onPress={handlePress}>
+        <Text style={styles.buttonText}>Avançar</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -43,9 +45,11 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 18,
+
     marginBottom: 8,
   },
   input: {
+    borderRadius: 10,
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
@@ -59,7 +63,20 @@ const styles = StyleSheet.create({
     width: 200, // Ajuste o tamanho da imagem conforme necessário
     height: 200, // Ajuste o tamanho da imagem conforme necessário
     marginBottom: 20,
-  }
+  },
+  button: {
+    alignItems: 'center',
+    width: '50%',
+    backgroundColor: 'blue',
+    padding: 15,
+    borderRadius: 10,
+    marginTop: 20,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
 });
 
 export default PlayerInfoScreen;

@@ -1,6 +1,6 @@
 // screens/HomeScreen.js
 import React from 'react';
-import { View, Text, Button, StyleSheet, Image } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 
 const HomeScreen = ({ route, navigation }) => {
   const { playerName } = route.params || {};
@@ -14,10 +14,12 @@ const HomeScreen = ({ route, navigation }) => {
         />
       </View>
       <Text style={styles.title}>Bem-vindo, {playerName || 'Jogador'}!</Text>
-      <Button
-        title="Ir para Atividade"
-        onPress={() => navigation.navigate('Atividade', {playerName})}
-      />
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate('Atividade', { playerName })}
+      >
+        <Text style={styles.buttonText}>Ir para Atividade</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -47,7 +49,18 @@ const styles = StyleSheet.create({
     width: 200, // Ajuste o tamanho da imagem conforme necessário
     height: 200, // Ajuste o tamanho da imagem conforme necessário
     marginBottom: 20,
-  }
+  },
+  button: {
+    backgroundColor: 'blue',
+    padding: 15,
+    borderRadius: 10,
+    marginTop: 20,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
 
 });
 
