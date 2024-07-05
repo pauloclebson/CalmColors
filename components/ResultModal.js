@@ -2,7 +2,9 @@
 import React from 'react';
 import { Modal, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-export default function ResultModal({ visible, correctAnswers, wrongAnswers, onClose }) {
+export default function ResultModal({visible, correctAnswers, wrongAnswers, onClose, playerName }) {
+  const showCongratulations = correctAnswers > wrongAnswers;
+
   return (
     <Modal
       animationType="slide"
@@ -12,7 +14,13 @@ export default function ResultModal({ visible, correctAnswers, wrongAnswers, onC
     >
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <Text style={styles.modalTitle}>Resultados da Atividade</Text>
+        <Text style={styles.modalTitle}>Resultado da Atividade</Text>
+          {showCongratulations ? (
+            <Text style={styles.modalText}>Parabéns, {playerName}! Você foi excelente!</Text>
+
+          ) : (
+            <Text style={styles.modalText}>Que pena, {playerName}, você teve mais erros do que acertos, tente novamente!</Text>
+          )}
           <Text style={styles.modalText}>Respostas corretas: {correctAnswers}</Text>
           <Text style={styles.modalText}>Respostas erradas: {wrongAnswers}</Text>
           <TouchableOpacity style={styles.button} onPress={onClose}>

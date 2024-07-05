@@ -3,15 +3,14 @@ import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 
 const HomeScreen = ({ route, navigation }) => {
-  const { playerName, playerAge } = route.params || {};
+  const { playerName } = route.params || {};
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Bem-vindo, {playerName || 'Jogador'}!</Text>
-      {playerAge && <Text style={styles.subtitle}>Idade: {playerAge}</Text>}
       <Button
         title="Ir para Atividade"
-        onPress={() => navigation.navigate('Atividade')}
+        onPress={() => navigation.navigate('Atividade', {playerName})}
       />
     </View>
   );
