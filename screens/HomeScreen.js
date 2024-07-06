@@ -13,12 +13,12 @@ const HomeScreen = ({ route, navigation }) => {
           style={styles.image}
         />
       </View>
-      <Text style={styles.title}>Bem-vindo, {playerName || 'Jogador'}!</Text>
+      <Text style={styles.title}>Ola, {playerName || 'Jogador'}, vamos começar a nossa atividade?</Text>
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate('Atividade', { playerName })}
       >
-        <Text style={styles.buttonText}>Ir para Atividade</Text>
+        <Text style={styles.buttonText}>Prosseguir</Text>
       </TouchableOpacity>
     </View>
   );
@@ -35,6 +35,8 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 24,
     fontWeight: 'bold',
+    textAlign: 'center',
+    width: '70%'
   },
   container_img:{
     justifyContent: 'center',

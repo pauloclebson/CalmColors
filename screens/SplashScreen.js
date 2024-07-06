@@ -1,12 +1,12 @@
 // screens/SplashScreen.js
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, Image } from 'react-native';
+import { View, StyleSheet, ActivityIndicator, Image } from 'react-native';
 
 const SplashScreen = ({ navigation }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.replace('PlayerInfo');
-    }, 3000); // 3 segundos
+      navigation.replace('Welcome');
+    }, 5000); // 5 segundos
 
     return () => clearTimeout(timer);
   }, [navigation]);
@@ -17,7 +17,6 @@ const SplashScreen = ({ navigation }) => {
         source={require('../assets/calm.png')} // Ajuste o caminho da imagem conforme necessário
         style={styles.image}
       />
-      <Text style={styles.title}>Bem-vindo ao Jogo!</Text>
       <ActivityIndicator size="large" color="#0000ff" />
     </View>
   );

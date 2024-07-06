@@ -1,12 +1,16 @@
 // screens/PlayerInfoScreen.js
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Alert } from 'react-native';
 
 const PlayerInfoScreen = ({ navigation }) => {
   const [name, setName] = useState('');
 
   const handlePress = () => {
     // Aqui você pode adicionar a lógica para salvar os dados ou navegar para outra tela
+    if(name.trim() === ''){
+      Alert.alert('Por favor, digite seu nome');
+      return;
+    }
     navigation.navigate('Inicio', { playerName: name});
   };
 
@@ -18,7 +22,7 @@ const PlayerInfoScreen = ({ navigation }) => {
           style={styles.image}
         />
       </View>
-      <Text style={styles.label}>Nome:</Text>
+      <Text style={styles.label}>Para continuar digite seu nome:</Text>
       <TextInput
         style={styles.input}
         placeholder="Digite seu nome"
@@ -26,7 +30,7 @@ const PlayerInfoScreen = ({ navigation }) => {
         onChangeText={setName}
       />
       <TouchableOpacity style={styles.button} onPress={handlePress}>
-        <Text style={styles.buttonText}>Avançar</Text>
+        <Text style={styles.buttonText}>Prosseguir</Text>
       </TouchableOpacity>
     </View>
   );

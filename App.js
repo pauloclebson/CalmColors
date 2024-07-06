@@ -8,6 +8,7 @@ import ActivityScreen from './screens/ActivityScreen';
 import FeedbackScreen from './screens/FeedbackScreen';
 import PlayerInfoScreen from './screens/PlayerInfoScreen';
 import SplashScreen from './screens/SplashScreen';
+import WelcomScreen from './screens/WelcomeScreen';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,7 @@ export default function App() {
         <Stack.Screen name="Inicio" component={HomeScreen} />
         <Stack.Screen name="Atividade" component={ActivityScreen} />
         <Stack.Screen name="Feedback" component={FeedbackScreen} />
+        <Stack.Screen name="Welcome" component={WelcomScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
