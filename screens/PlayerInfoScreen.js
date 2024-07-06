@@ -1,6 +1,7 @@
 // screens/PlayerInfoScreen.js
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Alert } from 'react-native';
+import ButtonPlayPause from '../components/ButtonPlayPause';
 
 const PlayerInfoScreen = ({ navigation }) => {
   const [name, setName] = useState('');
@@ -16,6 +17,7 @@ const PlayerInfoScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <ButtonPlayPause />
       <View style={styles.container_img}>
         <Image
           source={require('../assets/calm.png')} // Ajuste o caminho da imagem conforme necessário

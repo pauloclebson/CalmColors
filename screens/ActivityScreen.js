@@ -4,6 +4,7 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 import GeometryImage from '../components/GeometryImage';
 import OptionsList from '../components/OptionsList';
 import ResultModal from '../components/ResultModal';
+import ButtonPlayPause from '../components/ButtonPlayPause';
 
 const geometries = [
   { color: 'red', label: 'Triângulo', shape: require('../assets/red_shape.png') },
@@ -63,7 +64,9 @@ export default function ActivityScreen() {
 
   return (
     <View style={styles.container2}>
+      <ButtonPlayPause />
       <View style={styles.container_img}>
+      <ButtonPlayPause />
         <Image
           source={require('../assets/calm.png')} // Ajuste o caminho da imagem conforme necessário
           style={styles.image}

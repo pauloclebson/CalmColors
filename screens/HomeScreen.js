@@ -1,12 +1,15 @@
 // screens/HomeScreen.js
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import ButtonPlayPause from '../components/ButtonPlayPause';
+
 
 const HomeScreen = ({ route, navigation }) => {
   const { playerName } = route.params || {};
 
   return (
     <View style={styles.container}>
+       <ButtonPlayPause />
       <View style={styles.container_img}>
         <Image
           source={require('../assets/calm.png')} // Ajuste o caminho da imagem conforme necessário
