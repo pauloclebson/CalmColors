@@ -16,12 +16,18 @@ const HomeScreen = ({ route, navigation }) => {
           style={styles.image}
         />
       </View>
-      <Text style={styles.title}>Ola, {playerName || 'Jogador'}, vamos começar a nossa atividade?</Text>
+      <Text style={styles.title}>Olá, {playerName || 'Jogador'}, escolha a atividade?</Text>
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate('Atividade', { playerName })}
       >
-        <Text style={styles.buttonText}>Prosseguir</Text>
+        <Text style={styles.buttonText}>Acerte a imagem</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate('Memory', { playerName })}
+      >
+        <Text style={styles.buttonText}>Jogo da memória</Text>
       </TouchableOpacity>
     </View>
   );
