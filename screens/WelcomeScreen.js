@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { TouchableOpacity, View, Text, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { AudioContext } from '../contexts/AudioContext'
+import { Ionicons } from '@expo/vector-icons';
 
 export default function WelcomScreen(){
+  const { playPauseAudio, isPlaying } = useContext(AudioContext);
+
   const navigation = useNavigation();
 
   const handleStart = () => {
@@ -11,6 +15,12 @@ export default function WelcomScreen(){
 
   return(
     <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.playPauseButton}
+        onPress={playPauseAudio}
+      >
+        <Ionicons name={isPlaying ? "pause" : "play"} size={24} color="white" />
+      </TouchableOpacity>
        <Image
         source={require('../assets/calm.png')} // Ajuste o caminho da imagem conforme necessário
         style={styles.image}
@@ -61,5 +71,14 @@ export default function WelcomScreen(){
       width: 200, // Ajuste o tamanho da imagem conforme necessário
       height: 200, // Ajuste o tamanho da imagem conforme necessário
       marginBottom: 20,
+    },
+    playPauseButton: {
+      position: 'absolute',
+      top: 10,
+      right: 10,
+      backgroundColor: 'blue',
+      padding: 10,
+      borderRadius: 25,
+      marginTop: 50,
     },
   });

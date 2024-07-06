@@ -9,20 +9,24 @@ import FeedbackScreen from './screens/FeedbackScreen';
 import PlayerInfoScreen from './screens/PlayerInfoScreen';
 import SplashScreen from './screens/SplashScreen';
 import WelcomScreen from './screens/WelcomeScreen';
+import { AudioProvider } from './contexts/AudioContext';
+
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Splash" screenOptions={{ headerShown: false}}>
-        <Stack.Screen name="Splash" component={SplashScreen} />
-        <Stack.Screen name="PlayerInfo" component={PlayerInfoScreen} options={{ title: 'Informações do Jogador' }} />
-        <Stack.Screen name="Inicio" component={HomeScreen} />
-        <Stack.Screen name="Atividade" component={ActivityScreen} />
-        <Stack.Screen name="Feedback" component={FeedbackScreen} />
-        <Stack.Screen name="Welcome" component={WelcomScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <AudioProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Splash" screenOptions={{ headerShown: false}}>
+          <Stack.Screen name="Splash" component={SplashScreen} />
+          <Stack.Screen name="PlayerInfo" component={PlayerInfoScreen} options={{ title: 'Informações do Jogador' }} />
+          <Stack.Screen name="Inicio" component={HomeScreen} />
+          <Stack.Screen name="Atividade" component={ActivityScreen} />
+          <Stack.Screen name="Feedback" component={FeedbackScreen} />
+          <Stack.Screen name="Welcome" component={WelcomScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </AudioProvider>
   );
 }
