@@ -2,7 +2,7 @@
 import React from 'react';
 import { Modal, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-export default function ResultModal({visible, correctAnswers, wrongAnswers, onClose, playerName }) {
+export default function ResultModalActivity({visible, correctAnswers, wrongAnswers, onClose, playerName }) {
   let showCongratulations;
 
   if (correctAnswers > wrongAnswers) {

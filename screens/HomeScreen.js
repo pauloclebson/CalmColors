@@ -2,6 +2,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import ButtonPlayPause from '../components/ButtonPlayPause';
+import BackButton from '../components/BackButton';
 
 
 const HomeScreen = ({ route, navigation }) => {
@@ -10,6 +11,7 @@ const HomeScreen = ({ route, navigation }) => {
   return (
     <View style={styles.container}>
        <ButtonPlayPause />
+       <BackButton />
       <View style={styles.container_img}>
         <Image
           source={require('../assets/calm.png')} // Ajuste o caminho da imagem conforme necessário

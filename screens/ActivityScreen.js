@@ -3,8 +3,9 @@ import { View, Text, StyleSheet, Alert, TouchableOpacity, Image } from 'react-na
 import { useRoute, useNavigation } from '@react-navigation/native';
 import GeometryImage from '../components/GeometryImage';
 import OptionsList from '../components/OptionsList';
-import ResultModal from '../components/ResultModal';
 import ButtonPlayPause from '../components/ButtonPlayPause';
+import ResultModalActivity from '../components/ResultModalActivity';
+import BackButton from '../components/BackButton';
 
 const geometries = [
   { color: 'red', label: 'Triângulo', shape: require('../assets/red_shape.png') },
@@ -35,16 +36,16 @@ export default function ActivityScreen() {
 
   const handleSelectGeometry = (selectedColor) => {
     if (finished) {
-      Alert.alert('Atividade Finalizada!', 'Você já finalizou esta atividade.');
+
       return;
     }
 
     if (selectedColor === currentColor) {
       setCorrectAnswers(correctAnswers + 1);
-      Alert.alert('Parabéns!', 'Você acertou!');
+
     } else {
       setWrongAnswers(wrongAnswers + 1);
-      Alert.alert('Ops!', 'Tente novamente.');
+
     }
 
     chooseRandomColor();
@@ -66,6 +67,7 @@ export default function ActivityScreen() {
     <View style={styles.container2}>
       <ButtonPlayPause />
       <View style={styles.container_img}>
+      <BackButton />
       <ButtonPlayPause />
         <Image
           source={require('../assets/calm.png')} // Ajuste o caminho da imagem conforme necessário
@@ -87,7 +89,7 @@ export default function ActivityScreen() {
             <Text style={styles.buttonText}>Finalizar Atividade</Text>
           </TouchableOpacity>
         )}
-        <ResultModal
+        <ResultModalActivity
           visible={modalVisible}
           correctAnswers={correctAnswers}
           wrongAnswers={wrongAnswers}
@@ -115,10 +117,15 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   resultsContainer: {
+    width: '50%',
     marginVertical: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   resultText: {
+    padding: 5,
     fontSize: 18,
+    fontWeight: '900',
     marginBottom: 10,
     color: 'white',
   },

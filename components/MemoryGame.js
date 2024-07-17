@@ -1,6 +1,7 @@
-// components/MemoryGame.js
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image, Dimensions } from 'react-native';
+import ButtonPlayPause from './ButtonPlayPause';
+import BackButton from './BackButton';
 
 const cards = [
   { id: 1, color: 'red', matched: false },
@@ -34,7 +35,7 @@ const MemoryGame = ({ onFinish }) => {
   }, [matchedPairs]);
 
   const handleCardPress = (index) => {
-    if (selectedCards.length === 2) {
+    if (selectedCards.length === 2 || shuffledCards[index].matched) {
       return;
     }
 
@@ -49,6 +50,8 @@ const MemoryGame = ({ onFinish }) => {
         setShuffledCards(newShuffledCards);
         setMatchedPairs(matchedPairs + 1);
       }
+
+      setSelectedCards(newSelectedCards);
 
       setTimeout(() => setSelectedCards([]), 1000);
     } else {
@@ -65,42 +68,49 @@ const MemoryGame = ({ onFinish }) => {
         onPress={() => handleCardPress(index)}
         disabled={isFlipped}
       >
-        <Text style={styles.cardText}>{isFlipped ? card.color : '?'}</Text>
       </TouchableOpacity>
     );
   };
 
+  const { width } = Dimensions.get('window');
+
+
   return (
     <View style={styles.container1}>
+      <ButtonPlayPause />
+      <BackButton />
       <View>
-      <Image
-          source={require('../assets/calm.png')} // Ajuste o caminho da imagem conforme necessário
+        <Image
+          source={require('../assets/calm.png')}
           style={styles.image}
         />
       </View>
       <Text style={styles.title}>Jogo da Memória</Text>
-      <View style={styles.container}>
-        {shuffledCards.map((card, index) => renderCard(card, index))}
-      </View>
+
+        <View style={styles.container}>
+          {shuffledCards.map((card, index) => renderCard(card, index))}
+        </View>
+
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container1:{
+  container1: {
     flex: 1,
     backgroundColor: '#87CEFA',
     alignItems: 'center',
-
   },
   container: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
+    width: '100%',
+
   },
   card: {
-    width: '25,33%',
+    width: '25%', // Adjust width to fit 3 cards per row
     margin: 10,
     aspectRatio: 1,
     backgroundColor: 'gray',
@@ -112,10 +122,9 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
   },
-
   image: {
-    width: 150, // Ajuste o tamanho da imagem conforme necessário
-    height: 150, // Ajuste o tamanho da imagem conforme necessário
+    width: 150,
+    height: 150,
     marginBottom: 20,
     marginTop: 50,
   },

@@ -2,8 +2,9 @@
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import MemoryGame from '../components/MemoryGame';
-import ResultModal from '../components/ResultModal';
+import ResultModalMemory from '../components/ResultModalMemory';
 import { useNavigation } from '@react-navigation/native';
+
 
 export default function MemoryGameScreen({ route }) {
   const { playerName } = route.params;
@@ -25,7 +26,7 @@ export default function MemoryGameScreen({ route }) {
   return (
     <View style={styles.container}>
       <MemoryGame onFinish={handleFinish} />
-      <ResultModal
+      <ResultModalMemory
         visible={modalVisible}
         correctAnswers={results.correctAnswers}
         wrongAnswers={results.wrongAnswers}

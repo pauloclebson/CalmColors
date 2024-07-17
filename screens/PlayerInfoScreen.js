@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Alert } from 'react-native';
 import ButtonPlayPause from '../components/ButtonPlayPause';
 
+
 const PlayerInfoScreen = ({ navigation }) => {
   const [name, setName] = useState('');
 
