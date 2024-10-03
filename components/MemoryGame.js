@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image, Dimensions, ImageBackground } from 'react-native';
-import ButtonPlayPause from './ButtonPlayPause';
-import BackButton from './BackButton';
+import { View, TouchableOpacity, StyleSheet, Image, ImageBackground } from 'react-native';
+
 
 const cards = [
   { id: 1, image: require('../assets/imgs_memoria/cavalo.png'), matched: false },
@@ -89,26 +88,14 @@ const MemoryGame = ({ onFinish }) => {
   };
 
   return (
-    <View style={styles.container1}>
-      <ButtonPlayPause />
-      <BackButton />
-      <View>
-        <Image source={require('../assets/calm.png')} style={styles.image} />
-      </View>
-      <Text style={styles.title}>Jogo da Memória</Text>
       <View style={styles.container}>
-        {shuffledCards.map((card, index) => renderCard(card, index))} {/* Renderiza todas as cartas */}
+        {shuffledCards.map((card, index) => renderCard(card, index))}
       </View>
-    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container1: {
-    flex: 1,
-    backgroundColor: '#87CEFA',
-    alignItems: 'center',
-  },
+
   container: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -117,18 +104,17 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   card: {
-    width: '10%',
+    width: '22%',
     margin: 5,
     aspectRatio: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     borderRadius: 10,
-    backgroundColor: 'gray',
   },
   cardBack: {
+    alignItems: 'center',
+    justifyContent: 'center',
     width: '100%',
     height: '100%',
-    backgroundColor: 'gray',
+    backgroundColor: 'blue',
     borderRadius: 10,
   },
   flippedCard: {
@@ -139,18 +125,6 @@ const styles = StyleSheet.create({
     height: '100%',
     borderRadius: 10,
     resizeMode: 'contain',
-  },
-  image: {
-    width: 150,
-    height: 150,
-    marginBottom: 20,
-    marginTop: 50,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    color: 'white',
   },
 });
 

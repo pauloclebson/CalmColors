@@ -1,9 +1,11 @@
 // screens/MemoryGameScreen.js
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet, Text, Image } from 'react-native';
 import MemoryGame from '../components/MemoryGame';
 import ResultModalMemory from '../components/ResultModalMemory';
 import { useNavigation } from '@react-navigation/native';
+import ButtonPlayPause from '../components/ButtonPlayPause';
+import BackButton from '../components/BackButton';
 
 export default function MemoryGameScreen({ route }) {
   const { playerName } = route.params;  // Pega o nome do jogador da rota
@@ -26,8 +28,14 @@ export default function MemoryGameScreen({ route }) {
   };
 
   return (
-    <View>
-      <MemoryGame onFinish={handleFinish} />  {/* Passa o handleFinish para o MemoryGame */}
+    <View style={styles.container}>
+      <ButtonPlayPause />
+      <BackButton />
+      <View style={styles.container_img}>
+        <Image source={require('../assets/calm.png')} style={styles.image} />
+      <Text style={styles.title}>Jogo da Memória</Text>
+      </View>
+      <MemoryGame onFinish={handleFinish} />
       <ResultModalMemory
         visible={modalVisible}
         correctAnswers={results.correctAnswers}
@@ -38,3 +46,27 @@ export default function MemoryGameScreen({ route }) {
     </View>
   );
 }
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 16,
+    backgroundColor: '#87CEFA',
+  },
+  container_img:{
+    alignItems: 'center',
+  },
+  image: {
+    width: 150,
+    height: 150,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    color: 'white',
+  },
+});
