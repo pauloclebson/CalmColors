@@ -2,35 +2,43 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import ButtonPlayPause from '../components/ButtonPlayPause';
-import BackButton from '../components/BackButton';
 
-
-const HomeScreen = ({ route, navigation }) => {
-  const { playerName } = route.params || {};
-
+const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-       <ButtonPlayPause />
-       <BackButton />
+      <ButtonPlayPause />
       <View style={styles.container_img}>
         <Image
           source={require('../assets/calm.png')} // Ajuste o caminho da imagem conforme necessário
           style={styles.image}
         />
       </View>
-      <Text style={styles.title}>Olá, {playerName || 'Jogador'}, escolha a atividade?</Text>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('Atividade', { playerName })}
-      >
-        <Text style={styles.buttonText}>Acerte a imagem</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('Memory', { playerName })}
-      >
-        <Text style={styles.buttonText}>Jogo da memória</Text>
-      </TouchableOpacity>
+
+      <View style={styles.test}>
+      <View style={styles.gamesContainer}>
+        <TouchableOpacity
+          style={styles.gameButton}
+          onPress={() => navigation.navigate('Atividade')} // Navegação para o jogo "Acerte a imagem"
+        >
+          <Image
+            source={require('../assets/yellow_shape.png')} // Imagem do jogo "Acerte a imagem"
+            style={styles.gameImage}
+          />
+          <Text style={styles.gameText}>Jogo das Figuras</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.gameButton}
+          onPress={() => navigation.navigate('Memory')} // Navegação para o jogo "Jogo da memória"
+        >
+          <Image
+            source={require('../assets/jogo_memoria.jpg')} // Imagem do jogo "Jogo da memória"
+            style={styles.gameImage}
+          />
+          <Text style={styles.gameText}>Jogo da Memória</Text>
+        </TouchableOpacity>
+      </View>
+      </View>
     </View>
   );
 };
@@ -42,36 +50,42 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#87CEFA',
   },
-  title: {
-    color: 'white',
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    width: '70%'
+  test: {
+   alignItems: 'center',
+   justifyContent:'center',
+   width: '100%',
+   height: '50%',
   },
-  container_img:{
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+
   image: {
     alignItems: 'center',
     justifyContent: 'center',
     width: 200, // Ajuste o tamanho da imagem conforme necessário
     height: 200, // Ajuste o tamanho da imagem conforme necessário
-    marginBottom: 20,
   },
-  button: {
-    backgroundColor: 'blue',
-    padding: 15,
-    borderRadius: 10,
-    marginTop: 20,
+  gamesContainer: {
+    flexDirection: 'row', // Alinha as imagens em linha
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    width: '100%', // Ajuste para ocupar toda a largura da tela
+    paddingHorizontal: 20, // Espaçamento horizontal
+    // marginTop: 125, // Espaço entre o título e os jogos
   },
-  buttonText: {
+  gameButton: {
+    alignItems: 'center', // Centraliza o conteúdo dentro do botão
+    margin: 10, // Espaçamento entre os botões
+  },
+  gameImage: {
+    width: 100, // Ajuste o tamanho da imagem do jogo conforme necessário
+    height: 100, // Ajuste o tamanho da imagem do jogo conforme necessário
+    marginBottom: 10, // Espaço entre a imagem e o texto
+  },
+  gameText: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
-
 });
 
 export default HomeScreen;

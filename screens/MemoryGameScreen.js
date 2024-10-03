@@ -7,8 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import ButtonPlayPause from '../components/ButtonPlayPause';
 import BackButton from '../components/BackButton';
 
-export default function MemoryGameScreen({ route }) {
-  const { playerName } = route.params;  // Pega o nome do jogador da rota
+export default function MemoryGameScreen() {
   const [modalVisible, setModalVisible] = useState(false); // Controla a visibilidade do modal
   const [results, setResults] = useState({ correctAnswers: 0, wrongAnswers: 0 }); // Estado para armazenar acertos e erros
 
@@ -41,7 +40,6 @@ export default function MemoryGameScreen({ route }) {
         correctAnswers={results.correctAnswers}
         wrongAnswers={results.wrongAnswers}
         onClose={handleCloseModal}
-        playerName={playerName}  // Passa o nome do jogador para o modal
       />
     </View>
   );

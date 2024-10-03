@@ -6,11 +6,11 @@ export default function ResultModalActivity({visible, correctAnswers, wrongAnswe
   let showCongratulations;
 
   if (correctAnswers > wrongAnswers) {
-    showCongratulations = `Parabéns, ${playerName}! Você foi excelente!`;
+    showCongratulations = "Parabéns! Você foi excelente!";
   } else if (correctAnswers < wrongAnswers) {
-    showCongratulations = `Que pena ${playerName}, você teve mais erros do que acertos, tente novamente!`;
+    showCongratulations = "Que pena, você teve mais erros do que acertos, tente novamente!";
   } else {
-    showCongratulations = `Empate, ${playerName}! Tente novamente para melhorar seu desempenho!`;
+    showCongratulations = "Empate! Tente novamente para melhorar seu desempenho!";
   }
 
   return (

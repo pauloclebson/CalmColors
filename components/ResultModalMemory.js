@@ -3,7 +3,7 @@ import React from 'react';
 import { Modal, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default function ResultModalMemory({visible, correctAnswers, wrongAnswers, onClose, playerName }) {
-  let showCongratulations = `Parabéns, ${playerName}! Você foi excelente!`;
+  let showCongratulations = "Parabéns! Você foi excelente!";
 
   return (
     <Modal

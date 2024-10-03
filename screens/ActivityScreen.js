@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Alert, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import GeometryImage from '../components/GeometryImage';
 import OptionsList from '../components/OptionsList';
@@ -21,9 +21,7 @@ export default function ActivityScreen() {
   const [finished, setFinished] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
 
-  const route = useRoute()
   const navigation = useNavigation();
-  const { playerName } = route.params;
 
   useEffect(() => {
     chooseRandomColor();
@@ -94,7 +92,6 @@ export default function ActivityScreen() {
           correctAnswers={correctAnswers}
           wrongAnswers={wrongAnswers}
           onClose={handleCloseModal}
-          playerName={playerName}
         />
       </View>
     </View>
