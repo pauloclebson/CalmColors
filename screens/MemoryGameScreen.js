@@ -24,7 +24,7 @@ export default function MemoryGameScreen({ route }) {
   };
 
   return (
-    <View style={styles.container}>
+    <View>
       <MemoryGame onFinish={handleFinish} />
       <ResultModalMemory
         visible={modalVisible}
@@ -36,12 +36,3 @@ export default function MemoryGameScreen({ route }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#87CEFA',
-  },
-});

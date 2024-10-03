@@ -1,21 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image, Dimensions, ImageBackground } from 'react-native';
 import ButtonPlayPause from './ButtonPlayPause';
 import BackButton from './BackButton';
 
 const cards = [
-  { id: 1, color: 'red', matched: false },
-  { id: 2, color: 'red', matched: false },
-  { id: 3, color: 'green', matched: false },
-  { id: 4, color: 'green', matched: false },
-  { id: 5, color: 'blue', matched: false },
-  { id: 6, color: 'blue', matched: false },
-  { id: 7, color: 'yellow', matched: false },
-  { id: 8, color: 'yellow', matched: false },
-  { id: 9, color: 'pink', matched: false },
-  { id: 10, color: 'pink', matched: false },
-  { id: 11, color: 'white', matched: false },
-  { id: 12, color: 'white', matched: false },
+  { id: 1, image: require('../assets/imgs_memoria/cavalo.png'), matched: false },
+  { id: 2, image: require('../assets/imgs_memoria/cavalo.png'), matched: false },
+  { id: 3, image: require('../assets/imgs_memoria/cachorro.png'), matched: false },
+  { id: 4, image: require('../assets/imgs_memoria/cachorro.png'), matched: false },
+  { id: 5, image: require('../assets/imgs_memoria/pato.png'), matched: false },
+  { id: 6, image: require('../assets/imgs_memoria/pato.png'), matched: false },
+  { id: 7, image: require('../assets/imgs_memoria/galinha.png'), matched: false },
+  { id: 8, image: require('../assets/imgs_memoria/galinha.png'), matched: false },
+  { id: 9, image: require('../assets/imgs_memoria/girafa.png'), matched: false },
+  { id: 10, image: require('../assets/imgs_memoria/girafa.png'), matched: false },
+  { id: 11, image: require('../assets/imgs_memoria/baleia.png'), matched: false },
+  { id: 12, image: require('../assets/imgs_memoria/baleia.png'), matched: false },
+  { id: 13, image: require('../assets/imgs_memoria/gato.png'), matched: false },
+  { id: 14, image: require('../assets/imgs_memoria/gato.png'), matched: false },
+  { id: 15, image: require('../assets/imgs_memoria/macaco.png'), matched: false },
+  { id: 16, image: require('../assets/imgs_memoria/macaco.png'), matched: false },
+  { id: 17, image: require('../assets/imgs_memoria/leao.png'), matched: false },
+  { id: 18, image: require('../assets/imgs_memoria/leao.png'), matched: false },
+  { id: 19, image: require('../assets/imgs_memoria/elefante.png'), matched: false },
+  { id: 20, image: require('../assets/imgs_memoria/elefante.png'), matched: false },
 ];
 
 const shuffleCards = () => {
@@ -43,7 +51,7 @@ const MemoryGame = ({ onFinish }) => {
 
     if (newSelectedCards.length === 2) {
       const [firstIndex, secondIndex] = newSelectedCards;
-      if (shuffledCards[firstIndex].color === shuffledCards[secondIndex].color) {
+      if (shuffledCards[firstIndex].image === shuffledCards[secondIndex].image) {
         let newShuffledCards = [...shuffledCards];
         newShuffledCards[firstIndex].matched = true;
         newShuffledCards[secondIndex].matched = true;
@@ -64,15 +72,24 @@ const MemoryGame = ({ onFinish }) => {
     return (
       <TouchableOpacity
         key={index}
-        style={[styles.card, isFlipped && { backgroundColor: card.color }]}
+        style={[styles.card, isFlipped && styles.flippedCard]}
         onPress={() => handleCardPress(index)}
         disabled={isFlipped}
       >
+        {isFlipped ? (
+        <Image source={card.image} style={styles.cardImage} />
+      ) : (
+        <ImageBackground
+          source={require('../assets/calm.png')} // Imagem para o verso da carta
+          style={styles.cardBack}
+        />
+      )}
       </TouchableOpacity>
     );
   };
 
   const { width } = Dimensions.get('window');
+  const cardSize = (width - 40) / 4; // Calcula o tamanho para 4 colunas, deixando uma margem de 10 para os lados
 
 
   return (
@@ -107,20 +124,31 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-
+    height: '100%',
   },
   card: {
-    width: '25%', // Adjust width to fit 3 cards per row
-    margin: 10,
+    width: '22%', // Ajuste a largura para caber 4 cartas por linha
+    margin: 5,
     aspectRatio: 1,
-    backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
+    backgroundColor: 'gray',
   },
-  cardText: {
-    color: 'white',
-    fontSize: 18,
+  cardBack: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'gray', // Cor de fundo do verso da carta
+    borderRadius: 10,
+  },
+  flippedCard: {
+    backgroundColor: 'transparent', // Tornar o fundo transparente quando a carta for virada
+  },
+  cardImage: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 10,
+    resizeMode: 'contain', // Ajuste a imagem para cobrir o cartão de maneira proporcional
   },
   image: {
     width: 150,
@@ -135,5 +163,6 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 });
+
 
 export default MemoryGame;
