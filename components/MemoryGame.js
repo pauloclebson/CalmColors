@@ -26,25 +26,26 @@ const cards = [
   { id: 20, image: require('../assets/imgs_memoria/elefante.png'), matched: false },
 ];
 
+// Função para embaralhar as cartas
 const shuffleCards = () => {
   let shuffled = cards.sort(() => 0.5 - Math.random());
   return shuffled.map(card => ({ ...card, matched: false }));
 };
 
 const MemoryGame = ({ onFinish }) => {
-  const [shuffledCards, setShuffledCards] = useState(shuffleCards());
-  const [selectedCards, setSelectedCards] = useState([]);
-  const [matchedPairs, setMatchedPairs] = useState(0);
+  const [shuffledCards, setShuffledCards] = useState(shuffleCards()); // Embaralha as cartas
+  const [selectedCards, setSelectedCards] = useState([]); // Armazena cartas selecionadas
+  const [matchedPairs, setMatchedPairs] = useState(0); // Contador de pares correspondentes
 
   useEffect(() => {
-    if (matchedPairs === cards.length / 2) {
-      onFinish();
+    if (matchedPairs === cards.length / 2) {  // Verifica se todos os pares foram encontrados
+      onFinish();  // Chama a função de finalização quando o jogo terminar
     }
   }, [matchedPairs]);
 
   const handleCardPress = (index) => {
     if (selectedCards.length === 2 || shuffledCards[index].matched) {
-      return;
+      return;  // Não permite selecionar mais de duas cartas ou cartas já encontradas
     }
 
     let newSelectedCards = [...selectedCards, index];
@@ -60,8 +61,7 @@ const MemoryGame = ({ onFinish }) => {
       }
 
       setSelectedCards(newSelectedCards);
-
-      setTimeout(() => setSelectedCards([]), 1000);
+      setTimeout(() => setSelectedCards([]), 1000); // Desvira as cartas após 1 segundo
     } else {
       setSelectedCards(newSelectedCards);
     }
@@ -77,37 +77,28 @@ const MemoryGame = ({ onFinish }) => {
         disabled={isFlipped}
       >
         {isFlipped ? (
-        <Image source={card.image} style={styles.cardImage} />
-      ) : (
-        <ImageBackground
-          source={require('../assets/calm.png')} // Imagem para o verso da carta
-          style={styles.cardBack}
-        />
-      )}
+          <Image source={card.image} style={styles.cardImage} />
+        ) : (
+          <ImageBackground
+            source={require('../assets/calm.png')}  // Imagem do verso da carta
+            style={styles.cardBack}
+          />
+        )}
       </TouchableOpacity>
     );
   };
-
-  const { width } = Dimensions.get('window');
-  const cardSize = (width - 40) / 4; // Calcula o tamanho para 4 colunas, deixando uma margem de 10 para os lados
-
 
   return (
     <View style={styles.container1}>
       <ButtonPlayPause />
       <BackButton />
       <View>
-        <Image
-          source={require('../assets/calm.png')}
-          style={styles.image}
-        />
+        <Image source={require('../assets/calm.png')} style={styles.image} />
       </View>
       <Text style={styles.title}>Jogo da Memória</Text>
-
-        <View style={styles.container}>
-          {shuffledCards.map((card, index) => renderCard(card, index))}
-        </View>
-
+      <View style={styles.container}>
+        {shuffledCards.map((card, index) => renderCard(card, index))} {/* Renderiza todas as cartas */}
+      </View>
     </View>
   );
 };
@@ -124,10 +115,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-    height: '100%',
   },
   card: {
-    width: '22%', // Ajuste a largura para caber 4 cartas por linha
+    width: '10%',
     margin: 5,
     aspectRatio: 1,
     justifyContent: 'center',
@@ -138,17 +128,17 @@ const styles = StyleSheet.create({
   cardBack: {
     width: '100%',
     height: '100%',
-    backgroundColor: 'gray', // Cor de fundo do verso da carta
+    backgroundColor: 'gray',
     borderRadius: 10,
   },
   flippedCard: {
-    backgroundColor: 'transparent', // Tornar o fundo transparente quando a carta for virada
+    backgroundColor: 'transparent',
   },
   cardImage: {
     width: '100%',
     height: '100%',
     borderRadius: 10,
-    resizeMode: 'contain', // Ajuste a imagem para cobrir o cartão de maneira proporcional
+    resizeMode: 'contain',
   },
   image: {
     width: 150,
@@ -163,6 +153,5 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 });
-
 
 export default MemoryGame;

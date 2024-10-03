@@ -60,7 +60,7 @@ export default function ActivityScreen() {
     setModalVisible(false);
     setFinished(false); // Resetar o estado de finalização
     setCurrentColor(''); // Resetar a cor atual para reiniciar a atividade
-    navigation.navigate('PlayerInfo'); // Navegar de volta para a tela inicial
+    navigation.navigate('Inicio'); // Navegar de volta para a tela inicial
   };
 
   return (
