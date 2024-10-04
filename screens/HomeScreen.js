@@ -21,7 +21,7 @@ const HomeScreen = ({ navigation }) => {
           onPress={() => navigation.navigate('Atividade')} // Navegação para o jogo "Acerte a imagem"
         >
           <Image
-            source={require('../assets/yellow_shape.png')} // Imagem do jogo "Acerte a imagem"
+            source={require('../assets/imgs_figuras/estrela.png')} // Imagem do jogo "Acerte a imagem"
             style={styles.gameImage}
           />
           <Text style={styles.gameText}>Jogo das Figuras</Text>

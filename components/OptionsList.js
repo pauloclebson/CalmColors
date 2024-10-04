@@ -22,21 +22,23 @@ export default function OptionsList({ options, onSelect, selectedColor }) {
 
 const styles = StyleSheet.create({
   optionsContainer: {
-    flexDirection: 'row',
     justifyContent: 'space-around',
-    marginVertical: 20,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   optionItem: {
     borderWidth: 2,
     borderColor: 'transparent', // Borda padrão transparente
-    padding: 10,
     borderRadius: 10,
   },
   selectedItem: {
     borderColor: 'blue', // Borda destacada para a figura selecionada
   },
   image: {
-    width: 80,
-    height: 80,
+    width: 90,
+    height: 90,
+    resizeMode: 'contain',
   },
 });

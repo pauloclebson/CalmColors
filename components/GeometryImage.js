@@ -3,10 +3,14 @@ import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 
 const images = {
-  red: require('../assets/red_shape.png'),
-  green: require('../assets/green_shape.png'),
-  blue: require('../assets/blue_shape.png'),
-  yellow: require('../assets/yellow_shape.png'),
+  red: require('../assets/imgs_figuras/triangulo.png'),
+  green: require('../assets/imgs_figuras/quadrado.png'),
+  blue: require('../assets/imgs_figuras/circulo.png'),
+  yellow: require('../assets/imgs_figuras/estrela.png'),
+  rosa: require('../assets/imgs_figuras/losango.png'),
+  lilas: require('../assets/imgs_figuras/coracao.png'),
+  laranja: require('../assets/imgs_figuras/diamante.png'),
+  bege: require('../assets/imgs_figuras/hexagono.png'),
 };
 
 export default function GeometryImage({ color }) {
@@ -20,11 +24,11 @@ export default function GeometryImage({ color }) {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 2,
   },
   image: {
-    width: 150,
-    height: 150,
+    width: 200,
+    height: 200,
     resizeMode: 'contain',
   },
 });
