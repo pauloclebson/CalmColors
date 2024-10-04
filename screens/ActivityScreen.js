@@ -32,18 +32,19 @@ export default function ActivityScreen() {
     setCurrentColor(geometries[randomIndex].color);
   };
 
+  const [selectedColor, setSelectedColor] = useState(''); // Novo estado para armazenar a figura selecionada
+
   const handleSelectGeometry = (selectedColor) => {
     if (finished) {
-
       return;
     }
 
+    setSelectedColor(selectedColor); // Atualiza o estado da figura selecionada
+
     if (selectedColor === currentColor) {
       setCorrectAnswers(correctAnswers + 1);
-
     } else {
       setWrongAnswers(wrongAnswers + 1);
-
     }
 
     chooseRandomColor();
@@ -75,9 +76,12 @@ export default function ActivityScreen() {
       <View style={styles.container}>
         <Text style={styles.title}>Qual é a figura correta?</Text>
         <GeometryImage color={currentColor} />
-        <OptionsList
 
-        options={geometries} onSelect={handleSelectGeometry} />
+        <OptionsList
+        options={geometries}
+        onSelect={handleSelectGeometry}
+        selectedColor={selectedColor} // Passa a cor selecionada para destacar
+        />
         <View style={styles.resultsContainer}>
           <Text style={styles.resultText}>Acertos: {correctAnswers}</Text>
           <Text style={styles.resultText}>Erros: {wrongAnswers}</Text>

@@ -1,17 +1,19 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, StyleSheet, Image } from 'react-native';
+import { View, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
-export default function OptionsList({ options, onSelect }) {
+export default function OptionsList({ options, onSelect, selectedColor }) {
   return (
-    <View style={styles.container}>
-      {options.map((option, index) => (
+    <View style={styles.optionsContainer}>
+      {options.map((option) => (
         <TouchableOpacity
-          key={index}
-          style={[styles.optionButton ]}
+          key={option.color}
           onPress={() => onSelect(option.color)}
+          style={[
+            styles.optionItem,
+            selectedColor === option.color && styles.selectedItem, // Aplica estilo quando selecionado
+          ]}
         >
           <Image source={option.shape} style={styles.image} />
-          <Text style={styles.optionText}>{option.label}</Text>
         </TouchableOpacity>
       ))}
     </View>
@@ -19,28 +21,22 @@ export default function OptionsList({ options, onSelect }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  optionsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    width: '80%',
-    marginBottom: 20,
+    marginVertical: 20,
   },
-  optionButton: {
+  optionItem: {
+    borderWidth: 2,
+    borderColor: 'transparent', // Borda padrão transparente
     padding: 10,
     borderRadius: 10,
-    alignItems: 'center',
-    alignContent: 'center',
   },
-  optionText: {
-    fontSize: 16,
-    marginTop: 5,
-    alignItems: 'center',
-    alignContent: 'center',
+  selectedItem: {
+    borderColor: 'blue', // Borda destacada para a figura selecionada
   },
   image: {
-    width: 50,
-    height: 50,
-    resizeMode: 'contain',
-    marginBottom: 5,
+    width: 80,
+    height: 80,
   },
 });
